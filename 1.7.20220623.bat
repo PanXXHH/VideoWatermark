@@ -9,14 +9,14 @@ set PROJECT_ADDRESS=https://github.com/PanXXHH/VideoWatermark
 
 ::GLOBAL/CONFIG
 set skipDefaultVariable=n
-set FFMPEG_EXE=ffmpeg
-set FFPROBE_EXE=ffprobe
+set FFMPEG_EXE=.\Ffmpeg\bin\ffmpeg
+set FFPROBE_EXE=.\Ffmpeg\bin\ffprobe
 
 ::PRELOAD
 setlocal EnableDelayedExpansion
 
 ::README
-echo **********[%TITLE%（依赖：FFMPEG）, 版本号：%AWM_CORE_VERSION%, 作者：52POJIE.%AUTHOR%, 改进建议/意见：%CONTACT%, 开源：%PROJECT_ADDRESS%]**********
+echo **********[%TITLE%（依赖：FFMPEG）, 版本号：%AWM_CORE_VERSION%, 作者：%AUTHOR%, 改进建议/意见：%CONTACT%]**********
 echo ********************
 echo 注：提前装好FFMPEG工具
 echo 注：mp4视频存放在同目录下
