@@ -1,6 +1,6 @@
-# VideoWatermark
+# 批量加水印工具（依赖：FFMPEG）
 ___
-***[批量加水印工具（依赖：FFMPEG）, 版本号：1.7.20220623, 作者：52POJIE.panpanpan, 改进建议/意见：pxxh0120, 开源 ：]***
+***[版本号：1.7.20220623, 作者：52POJIE.panpanpan, 改进建议/意见：pxxh0120]***
 ___
 - 提前装好FFMPEG工具
 - mp4视频存放在同目录下
