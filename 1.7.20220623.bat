@@ -16,7 +16,7 @@ set FFPROBE_EXE=.\Ffmpeg\bin\ffprobe
 setlocal EnableDelayedExpansion
 
 ::README
-echo **********[%TITLE%（依赖：FFMPEG）, 版本号：%AWM_CORE_VERSION%, 作者：%AUTHOR%, 改进建议/意见：%CONTACT%]**********
+echo **********[%TITLE%（依赖：FFMPEG）, 版本号：%AWM_CORE_VERSION%, 作者：%AUTHOR%, 改进建议/意见：%CONTACT%, 开源地址=%PROJECT_ADDRESS%]**********
 echo ********************
 echo 注：提前装好FFMPEG工具
 echo 注：mp4视频存放在同目录下
