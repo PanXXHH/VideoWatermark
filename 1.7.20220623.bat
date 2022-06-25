@@ -5,7 +5,7 @@ set BL_CORE_VERSION=3.2
 set TITLE=批量加水印工具
 set AUTHOR=panpanpan
 set CONTACT=pxxh0120
-set PROJECT_ADDRESS=
+set PROJECT_ADDRESS=https://github.com/PanXXHH/VideoWatermark
 
 ::GLOBAL/CONFIG
 set skipDefaultVariable=n
@@ -16,7 +16,7 @@ set FFPROBE_EXE=ffprobe
 setlocal EnableDelayedExpansion
 
 ::README
-echo **********[%TITLE%（依赖：FFMPEG）, 版本号：%AWM_CORE_VERSION%, 作者：52POJIE.%AUTHOR%, 改进建议/意见：%CONTACT%, 开源：]**********
+echo **********[%TITLE%（依赖：FFMPEG）, 版本号：%AWM_CORE_VERSION%, 作者：52POJIE.%AUTHOR%, 改进建议/意见：%CONTACT%, 开源：%PROJECT_ADDRESS%]**********
 echo ********************
 echo 注：提前装好FFMPEG工具
 echo 注：mp4视频存放在同目录下
