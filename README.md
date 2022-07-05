@@ -10,7 +10,6 @@ ___
 - 水印图片尺寸不能大于视频帧宽或帧高
 
 ___
-![DEMO1](raw/pic01.png?v=1&type=image)
 ![DEMO1](raw/pic01.png)
 ![DEMO2](raw/pic02.png)
 ![DEMO3](raw/pic03.png)
