@@ -1,1 +1,2 @@
-.txt export-ignore
+.gitattributes export-ignore
+a.txt export-ignore
