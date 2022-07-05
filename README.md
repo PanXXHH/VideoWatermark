@@ -10,7 +10,7 @@ ___
 - 水印图片尺寸不能大于视频帧宽或帧高
 
 ___
-![预览图1](https://raw.githubusercontent.com/PanXXHH/VideoWatermark/main/raw/preview01.png)
-![预览图2](https://raw.githubusercontent.com/PanXXHH/VideoWatermark/main/raw/preview02.png)
-![预览图3](https://raw.githubusercontent.com/PanXXHH/VideoWatermark/main/raw/preview03.png)
-![预览图4](https://raw.githubusercontent.com/PanXXHH/VideoWatermark/main/raw/preview04.png)
+![预览图1](./raw/preview01.png)
+![预览图2](./raw/preview02.png)
+![预览图3](./raw/preview03.png)
+![预览图4](./raw/preview04.png)
