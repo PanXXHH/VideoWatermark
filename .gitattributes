@@ -1,4 +1,2 @@
 .gitattributes export-ignore
-a.txt export-ignore
-b.tab export-ignore
 /raw export-ignore
