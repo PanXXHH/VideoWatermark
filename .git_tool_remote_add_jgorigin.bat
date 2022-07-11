@@ -6,7 +6,7 @@ set skipDefaultVariable=n
 ::PRELOAD
 setlocal EnableDelayedExpansion
 
-if not exist "%JG_GITRESPOSITORIES_PATH%\" (
+if not exist "%JG_GITREPOSITORIES_PATH%\" (
 	echo 远程目录不存在
 	pause
 	goto EOF
@@ -32,17 +32,17 @@ if not defined %variableName% (
 
 :: 变量预处理区
 
-if exist "%JG_GITRESPOSITORIES_PATH%\%projectName%" (
+if exist "%JG_GITREPOSITORIES_PATH%\%projectName%" (
 	echo 创建失败，该项目名称已存在！
 	pause
 	goto EOF
 )
 
-mkdir "%JG_GITRESPOSITORIES_PATH%\%projectName%"
+mkdir "%JG_GITREPOSITORIES_PATH%\%projectName%"
 
-git init --bare "%JG_GITRESPOSITORIES_PATH%\%projectName%"
+git init --bare "%JG_GITREPOSITORIES_PATH%\%projectName%"
 
-set "variable=%JG_GITRESPOSITORIES_PATH%\%projectName%"
+set "variable=%JG_GITREPOSITORIES_PATH%\%projectName%"
 
 set "drive=%variable:~0,1%"
 
