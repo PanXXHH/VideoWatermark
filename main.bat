@@ -1,16 +1,18 @@
 @echo off
 ::CONST
-set AWM_CORE_VERSION=1.7.20220623
+set AWM_CORE_VERSION=1.0.8.220716
 set BL_CORE_VERSION=3.2
 set TITLE=批量加水印工具
 set AUTHOR=panpanpan
 set CONTACT=pxxh0120
 set PROJECT_ADDRESS=https://github.com/PanXXHH/VideoWatermark
 
-::GLOBAL/CONFIG
+::GLOBAL
 set skipDefaultVariable=n
-set FFMPEG_EXE=.\Ffmpeg\bin\ffmpeg
-set FFPROBE_EXE=.\Ffmpeg\bin\ffprobe
+set FFMPEG_EXE=ffmpeg
+set FFPROBE_EXE=ffprobe
+set SUPPORT_INI_BAT=.\lib\__support_ini__.bat
+set CONFIG_INI=.\config.ini
 
 ::PRELOAD
 setlocal EnableDelayedExpansion
@@ -19,21 +21,22 @@ setlocal EnableDelayedExpansion
 echo **********[%TITLE%（依赖：FFMPEG）, 版本号：%AWM_CORE_VERSION%, 作者：%AUTHOR%, 改进建议/意见：%CONTACT%, 开源地址=%PROJECT_ADDRESS%]**********
 echo ********************
 echo 注：提前装好FFMPEG工具
-echo 注：mp4视频存放在同目录下
 echo 注：mp4文件名不能出现空格，否则会出错
-echo 注：同目录下要放logo.png文件
-echo 注："-d"为跳过默认参数
+echo 注："-d"为跳过后续默认参数
 echo 注：水印图片尺寸不能大于视频帧宽或帧高
+echo 注：支持图片，动图作为logo
+echo 注：支持图片作为视频
+echo:
 
-::变量输入区（选填）
+::INPUT(OPTIONAL)
 
 ::导入目录变量
 ::变量名
 set variableName=inputdir
 ::默认变量值
-set defaultVariableValue=.\
+for /f "delims=" %%a in ('call %SUPPORT_INI_BAT% %CONFIG_INI% /s config /i %variableName% %GIT_TOOL_CONFIG%') do @set defaultVariableValue=%%a
 ::变量描述
-set variableDescription=视频导入目录【必须以"\"结尾】
+for /f "delims=" %%a in ('call %SUPPORT_INI_BAT% %CONFIG_INI% /s config /i _%variableName%Description %GIT_TOOL_CONFIG%') do @set variableDescription=%%a
 if [%skipDefaultVariable%] == [y] (
 	set %variableName%=%defaultVariableValue%
 )else (
@@ -53,9 +56,9 @@ if [%skipDefaultVariable%] == [y] (
 ::变量名
 set variableName=outputdir
 ::默认变量值
-set defaultVariableValue=.\output\
+for /f "delims=" %%a in ('call %SUPPORT_INI_BAT% %CONFIG_INI% /s config /i %variableName% %GIT_TOOL_CONFIG%') do @set defaultVariableValue=%%a
 ::变量描述
-set variableDescription=视频导出目录【必须以"\"结尾】
+for /f "delims=" %%a in ('call %SUPPORT_INI_BAT% %CONFIG_INI% /s config /i _%variableName%Description %GIT_TOOL_CONFIG%') do @set variableDescription=%%a
 if [%skipDefaultVariable%] == [y] (
 	set %variableName%=%defaultVariableValue%
 )else (
@@ -72,12 +75,13 @@ if [%skipDefaultVariable%] == [y] (
 )
 
 ::水印图片文件名称变量
+
 ::变量名
 set variableName=WMFileName
 ::默认变量值
-set defaultVariableValue=logo.png
+for /f "delims=" %%a in ('call %SUPPORT_INI_BAT% %CONFIG_INI% /s config /i %variableName% %GIT_TOOL_CONFIG%') do @set defaultVariableValue=%%a
 ::变量描述
-set variableDescription=水印图片文件名称
+for /f "delims=" %%a in ('call %SUPPORT_INI_BAT% %CONFIG_INI% /s config /i _%variableName%Description %GIT_TOOL_CONFIG%') do @set variableDescription=%%a
 if [%skipDefaultVariable%] == [y] (
 	set %variableName%=%defaultVariableValue%
 )else (
@@ -93,13 +97,13 @@ if [%skipDefaultVariable%] == [y] (
 	)
 )
 
-::水印图片输出X起始位置变量
+::水印X起始位置变量
 ::变量名
 set variableName=WMPlaceX
 ::默认变量值
-set defaultVariableValue=10
+for /f "delims=" %%a in ('call %SUPPORT_INI_BAT% %CONFIG_INI% /s config /i %variableName% %GIT_TOOL_CONFIG%') do @set defaultVariableValue=%%a
 ::变量描述
-set variableDescription=水印图片输出X起始位置
+for /f "delims=" %%a in ('call %SUPPORT_INI_BAT% %CONFIG_INI% /s config /i _%variableName%Description %GIT_TOOL_CONFIG%') do @set variableDescription=%%a
 if [%skipDefaultVariable%] == [y] (
 	set %variableName%=%defaultVariableValue%
 )else (
@@ -115,13 +119,13 @@ if [%skipDefaultVariable%] == [y] (
 	)
 )
 
-::水印图片输出Y起始位置变量
+::水印Y起始位置变量
 ::变量名
 set variableName=WMPlaceY
 ::默认变量值
-set defaultVariableValue=15
+for /f "delims=" %%a in ('call %SUPPORT_INI_BAT% %CONFIG_INI% /s config /i %variableName% %GIT_TOOL_CONFIG%') do @set defaultVariableValue=%%a
 ::变量描述
-set variableDescription=水印图片输出Y起始位置
+for /f "delims=" %%a in ('call %SUPPORT_INI_BAT% %CONFIG_INI% /s config /i _%variableName%Description %GIT_TOOL_CONFIG%') do @set variableDescription=%%a
 if [%skipDefaultVariable%] == [y] (
 	set %variableName%=%defaultVariableValue%
 )else (
@@ -137,13 +141,13 @@ if [%skipDefaultVariable%] == [y] (
 	)
 )
 
-::水印图片输出宽度变量
+::水印图片宽度
 ::变量名
 set variableName=WMw
 ::默认变量值
-set defaultVariableValue=default
+for /f "delims=" %%a in ('call %SUPPORT_INI_BAT% %CONFIG_INI% /s config /i %variableName% %GIT_TOOL_CONFIG%') do @set defaultVariableValue=%%a
 ::变量描述
-set variableDescription=水印图片输出宽度【default为图片宽度】
+for /f "delims=" %%a in ('call %SUPPORT_INI_BAT% %CONFIG_INI% /s config /i _%variableName%Description %GIT_TOOL_CONFIG%') do @set variableDescription=%%a
 if [%skipDefaultVariable%] == [y] (
 	set %variableName%=%defaultVariableValue%
 )else (
@@ -159,13 +163,13 @@ if [%skipDefaultVariable%] == [y] (
 	)
 )
 
-::水印图片输出高度变量
+::水印图片高度
 ::变量名
 set variableName=WMh
 ::默认变量值
-set defaultVariableValue=default
+for /f "delims=" %%a in ('call %SUPPORT_INI_BAT% %CONFIG_INI% /s config /i %variableName% %GIT_TOOL_CONFIG%') do @set defaultVariableValue=%%a
 ::变量描述
-set variableDescription=水印图片输出高度【default为图片高度】
+for /f "delims=" %%a in ('call %SUPPORT_INI_BAT% %CONFIG_INI% /s config /i _%variableName%Description %GIT_TOOL_CONFIG%') do @set variableDescription=%%a
 if [%skipDefaultVariable%] == [y] (
 	set %variableName%=%defaultVariableValue%
 )else (
@@ -181,13 +185,13 @@ if [%skipDefaultVariable%] == [y] (
 	)
 )
 
-::水印图片输出背景是否模糊变量
+::是否加背景模糊变量
 ::变量名
 set variableName=background_blurred
 ::默认变量值
-set defaultVariableValue=n
+for /f "delims=" %%a in ('call %SUPPORT_INI_BAT% %CONFIG_INI% /s config /i %variableName% %GIT_TOOL_CONFIG%') do @set defaultVariableValue=%%a
 ::变量描述
-set variableDescription=水印图片输出背景是否模糊
+for /f "delims=" %%a in ('call %SUPPORT_INI_BAT% %CONFIG_INI% /s config /i _%variableName%Description %GIT_TOOL_CONFIG%') do @set variableDescription=%%a
 if [%skipDefaultVariable%] == [y] (
 	set %variableName%=%defaultVariableValue%
 )else (
@@ -269,9 +273,9 @@ echo 执行过程记录表>%outputdir%过程记录.txt
 for /f "delims=" %%a in ('dir /b %inputdir%*.%videoType%') do (
 echo processing:%%a>>%outputdir%过程记录.txt
 if [%background_blurred%] == [y] (
-	%FFMPEG_EXE% -i %inputdir%%%a -vf "[in]delogo=x=%WMPlaceX%:y=%WMPlaceY%:w=%WMw%:h=%WMh%[a];movie=%WMFileName%,scale=%WMw%:%WMh%[watermark];[a][watermark] overlay=%WMPlaceX%:%WMPlaceY% [out]" %outputdir%%%a
+	%FFMPEG_EXE% -i "%inputdir%%%a" -vf "[in]delogo=x=%WMPlaceX%:y=%WMPlaceY%:w=%WMw%:h=%WMh%[a];movie=%WMFileName%,scale=%WMw%:%WMh%[watermark];[a][watermark] overlay=%WMPlaceX%:%WMPlaceY% [out]" "%outputdir%%%a"
 )else (
-	%FFMPEG_EXE% -i %inputdir%%%a -vf "movie=%WMFileName%,scale=%WMw%:%WMh%[watermark];[a][watermark] overlay=%WMPlaceX%:%WMPlaceY% [out]" %outputdir%%%a
+	%FFMPEG_EXE% -i "%inputdir%%%a" -vf "movie=%WMFileName%,scale=%WMw%:%WMh%[watermark];[a][watermark] overlay=%WMPlaceX%:%WMPlaceY% [out]" "%outputdir%%%a"
 )
 echo success:%%a>>%outputdir%过程记录.txt
 )
