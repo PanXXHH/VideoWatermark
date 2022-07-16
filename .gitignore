@@ -4,3 +4,4 @@ Versions/
 .git_tool_commit_release.bat
 .gitattributes
 .git_tool_remote_add_jgorigin.bat
+.gitignore
