@@ -1,6 +1,6 @@
 Releases/
 Versions/
-.git_commit_release.bat
-.git_commit_push.bat
-.gitignore
+.git_tool_commit_push.bat
+.git_tool_commit_release.bat
+.gitattributes
 .git_tool_remote_add_jgorigin.bat
